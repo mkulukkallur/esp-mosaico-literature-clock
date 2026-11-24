@@ -1,0 +1,98 @@
+menu "Literature Clock"
+
+    config LC_WIFI_SSID
+        string "Fallback Wi-Fi network name (SSID)"
+        default ""
+        help
+            Normally leave empty: the clock uses the Wi-Fi network saved in the
+            Mosaico's Vibe Mode settings. Set this only to override it.
+
+    config LC_WIFI_PASSWORD
+        string "Fallback Wi-Fi password"
+        default ""
+
+    config LC_TZ_AUTO
+        bool "Find the timezone automatically from the internet address"
+        default y
+        help
+            One request per start-up to the URL below, which returns the IANA
+            timezone of the internet address (e.g. "Europe/Paris"). The
+            "clock_timezone" entry in Vibe Mode > Settings > Shared information
+            always wins over this.
+
+    config LC_IP_TZ_URL
+        string "IP timezone lookup URL"
+        default "https://ipinfo.io/json"
+        depends on LC_TZ_AUTO
+        help
+            Must return JSON with a "timezone" field holding an IANA zone name.
+
+    config LC_TIMEZONE
+        string "Fallback POSIX timezone"
+        default "EST5EDT,M3.2.0,M11.1.0"
+        help
+            Used when there is no clock_timezone entry and the automatic lookup is
+            off or fails. Examples: CST6CDT,M3.2.0,M11.1.0  PST8PDT,M3.2.0,M11.1.0
+            GMT0BST,M3.5.0/1,M10.5.0  CET-1CEST,M3.5.0,M10.5.0/3  IST-5:30  UTC0
+
+    choice LC_THEME
+        prompt "Starting theme (long-press the screen to switch)"
+        default LC_THEME_DARK
+
+        config LC_THEME_DARK
+            bool "Dark: light text on black"
+        config LC_THEME_PAPER
+            bool "Paper: dark text on cream, like an e-reader"
+    endchoice
+
+    choice LC_SHOW_TIME
+        prompt "Show the time in digits at the top"
+        default LC_SHOW_TIME_FALLBACK
+
+        config LC_SHOW_TIME_FALLBACK
+            bool "Only when there is no quote for this exact minute"
+            help
+                Minutes without a quote show the latest earlier quote; the
+                digits then make the real time clear.
+        config LC_SHOW_TIME_ALWAYS
+            bool "Always"
+        config LC_SHOW_TIME_NEVER
+            bool "Never"
+    endchoice
+
+    config LC_RANDOM_QUOTE
+        bool "Pick a random quote when a minute has several"
+        default y
+        help
+            Otherwise the first one in the file is shown. Tapping the screen
+            always moves to the next quote for the minute.
+
+    config LC_NIGHT_DIM
+        bool "Dim the screen at night"
+        default y
+
+    config LC_NIGHT_START_HOUR
+        int "Night starts at (hour, 0-23)"
+        range 0 23
+        default 23
+        depends on LC_NIGHT_DIM
+
+    config LC_NIGHT_END_HOUR
+        int "Night ends at (hour, 0-23)"
+        range 0 23
+        default 7
+        depends on LC_NIGHT_DIM
+
+    config LC_DAY_BRIGHTNESS
+        int "Day brightness (%)"
+        range 5 100
+        default 100
+        depends on LC_NIGHT_DIM
+
+    config LC_NIGHT_BRIGHTNESS
+        int "Night brightness (%)"
+        range 1 100
+        default 25
+        depends on LC_NIGHT_DIM
+
+endmenu

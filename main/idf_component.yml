@@ -1,0 +1,12 @@
+dependencies:
+  idf: ">=6.2"
+  esp-mosaico-bsp:
+    version: "*"
+    override_path: "../../../submodule/esp-mosaico-bsp/components/esp-mosaico-bsp"
+  esp_iris:
+    version: "*"
+    override_path: "../../../submodule/esp-mosaico-utils/ESP-Iris/components/esp_iris"
+  # Same LVGL pin as the official template (BSP display adapter).
+  lvgl/lvgl: "==9.5.0"
+  # cJSON lives in the component registry in ESP-IDF 6.x
+  espressif/cjson: "*"
