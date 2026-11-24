@@ -30,7 +30,8 @@
     ],
     "attachments": [
       "LICENSE",
-      "fonts/OFL.txt"
+      "fonts/OFL.txt",
+      "data/LICENSE-litclock_extra.md"
     ]
   },
   "device": {

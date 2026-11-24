@@ -14,7 +14,7 @@ rebuilt for the Mosaico's round-cornered 480×480 screen.
 
 ## Features
 
-* **1,444 quotes** covering 904 of the day's 1,440 minutes. A minute without its own quote keeps
+* **1,996 quotes** covering 1,347 of the day's 1,440 minutes. A minute without its own quote keeps
   the latest earlier one, and the exact time is then shown in small digits at the top.
 * The quote is typeset in [Literata](https://github.com/googlefonts/literata), Google's e-book
   typeface, at the largest size that fits the screen (16–46 px). The time phrase is bold and coloured.
@@ -33,6 +33,11 @@ to its author, translator or publisher.**
   attribution. Many come from works still under copyright.
 * The collection grew out of a 2011 call by *The Guardian* for readers to find mentions of times of day
   in books. It has since been used by many literary-clock projects.
+* The quotes for 443 minutes that the original list didn't cover (`data/litclock_extra.csv`) come from
+  Johannes Enevoldsen's [literature clock](https://github.com/JohannesNE/literature-clock) list.
+  Only quotes it marks as safe for work are used. That list, and this selection from it, are under
+  [CC BY-NC-SA 2.5](https://creativecommons.org/licenses/by-nc-sa/2.5/), so they can't be used
+  commercially (see [`data/LICENSE-litclock_extra.md`](data/LICENSE-litclock_extra.md)).
 * The quotes are reproduced here only to tell the time, in a free, non-commercial project. No
   claim of ownership is made over them.
 * **Rights holders:** if you'd like a quote removed or its attribution corrected, please
@@ -127,7 +132,9 @@ Reinstall with `system-update`.
 
 ## Changing the quotes
 
-The quotes are in [`data/litclock.csv`](https://github.com/mkulukkallur/esp-mosaico-literature-clock/blob/main/data/litclock.csv), one per line, `|`-separated, UTF-8:
+The quotes are in [`data/litclock.csv`](https://github.com/mkulukkallur/esp-mosaico-literature-clock/blob/main/data/litclock.csv)
+and [`data/litclock_extra.csv`](https://github.com/mkulukkallur/esp-mosaico-literature-clock/blob/main/data/litclock_extra.csv),
+one per line, `|`-separated, UTF-8:
 
 ```
 HH:MM|time phrase exactly as it appears in the quote|quote|title|author
@@ -143,6 +150,8 @@ python tools/build_fonts.py
 python tools/preview.py
 ```
 
+* `import_extra.py path/to/litclock_annotated.csv` rebuilds `litclock_extra.csv` from a newer copy of
+  the JohannesNE list (safe-for-work quotes for minutes `litclock.csv` doesn't cover).
 * `build_quotes.py` warns about any quote whose time phrase it can't find. That quote is shown
   without a highlight.
 * `preview.py` checks that every quote fits the screen and redraws `preview.png`.
@@ -173,11 +182,13 @@ C:\esp\espv6.2esp-idf\export.bat
 cd C:\esp\esp-mosaico-vibe
 python mosaico.py iris system-update --project projects/literature_clock
 python -m pip install "jsonschema>=4.23,<5" "markdown-it-py>=3,<5"
-python mosaico.py project package --project projects/literature_clock --output dist\literature_clock-1.0.0.zip
-python mosaico.py project validate dist\literature_clock-1.0.0.zip --json
+python mosaico.py project package --project projects/literature_clock --output dist\literature_clock-1.0.1.zip
+python mosaico.py project validate dist\literature_clock-1.0.1.zip --json
 python mosaico.py account login
-python mosaico.py project upload dist\literature_clock-1.0.0.zip --create
+python mosaico.py project upload dist\literature_clock-1.0.1.zip --create
 ```
+
+(`--create` is for a first upload only; a new version of an existing app uses `--update PUBLIC_ID`.)
 
 `mosaico-ideas.json` uses the current Idea-center format (`content_type`, `category_id` 30 =
 Tools software). Workspaces whose toolkit predates Espressif's November 2026 update can't upload:
@@ -199,8 +210,10 @@ For a new version:
 The code, tools and artwork in this repository are released under the [MIT License](LICENSE),
 **except for the following**, which keep their own terms:
 
-* **Quotes** (`data/litclock.csv`, `main/quotes_data.c`): copyright belongs to the respective
-  authors and publishers. See [Quotes and copyright](#quotes-and-copyright).
+* **Quotes** (`data/litclock.csv`, `data/litclock_extra.csv`, `main/quotes_data.c`): copyright belongs
+  to the respective authors and publishers. See [Quotes and copyright](#quotes-and-copyright).
+  The selection in `data/litclock_extra.csv` comes from Johannes Enevoldsen's list and is under
+  CC BY-NC-SA 2.5.
 * **Font:** Literata, © The Literata Project Authors, under the SIL Open Font License 1.1
   ([`fonts/OFL.txt`](fonts/OFL.txt)). `main/fonts/` holds subsets of it.
 * **Idea-grid labels** (`store/device/`): rendered from Noto Sans SC (SIL Open Font License 1.1).
