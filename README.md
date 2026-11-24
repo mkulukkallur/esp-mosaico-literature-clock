@@ -179,6 +179,11 @@ python mosaico.py account login
 python mosaico.py project upload dist\literature_clock-1.0.0.zip --create
 ```
 
+`mosaico-ideas.json` uses the current Idea-center format (`content_type`, `category_id` 30 =
+Tools software). Workspaces whose toolkit predates Espressif's November 2026 update can't upload:
+their upload address no longer exists (HTTP 404). Update the workspace, or run `project package` and
+`project upload` with the current [esp-mosaico-utils](https://github.com/esp-mosaico/esp-mosaico-utils).
+
 `system-update` builds `build/literature_clock-system-update.irisfw`, which the package
 includes, and installs it as a final test. `upload` creates a **draft**; you publish it on the website.
 
@@ -187,7 +192,7 @@ For a new version:
 1. Bump `project(literature_clock VERSION x.y.z)` in `CMakeLists.txt`.
 2. Add a `CHANGELOG.md` entry.
 3. Rebuild and re-package.
-4. Upload with `--update APPLICATION_ID --expected-project-version N`.
+4. Upload with `--update PUBLIC_ID` (this app's ID is `yvjbA7jm2gZD`).
 
 ## License
 
