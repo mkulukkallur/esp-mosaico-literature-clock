@@ -192,7 +192,7 @@ For a new version:
 1. Bump `project(literature_clock VERSION x.y.z)` in `CMakeLists.txt`.
 2. Add a `CHANGELOG.md` entry.
 3. Rebuild and re-package.
-4. Upload with `--update PUBLIC_ID` (this app's ID is `yvjbA7jm2gZD`).
+4. Upload with `--update PUBLIC_ID`, using the ID the first upload printed (`--create` would make a second app).
 
 ## License
 
