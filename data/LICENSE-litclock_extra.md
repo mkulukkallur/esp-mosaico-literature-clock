@@ -2,9 +2,10 @@
 
 This file holds quotes taken from the
 [literature clock](https://github.com/JohannesNE/literature-clock) list by Johannes Enevoldsen
-(`litclock_annotated.csv`). Only quotes tagged "sfw" are included, and only for minutes that
-`data/litclock.csv` has no quote for. `tools/import_extra.py` made the selection and changed
-`<br>` tags to line breaks.
+(`litclock_annotated.csv`), only for minutes that `data/litclock.csv` has no quote for.
+Quotes tagged "sfw" are included, plus unrated ("unknown") quotes that were read by hand, minus
+a few found unsuitable. Quotes tagged "nsfw" are not included. `tools/import_extra.py` made the
+selection, changed `<br>` tags to line breaks and corrected three author names.
 
 The list is licensed under the
 [Creative Commons Attribution-NonCommercial-ShareAlike 2.5 Generic License](https://creativecommons.org/licenses/by-nc-sa/2.5/).

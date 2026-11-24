@@ -14,7 +14,7 @@ rebuilt for the Mosaico's round-cornered 480×480 screen.
 
 ## Features
 
-* **1,996 quotes** covering 1,347 of the day's 1,440 minutes. A minute without its own quote keeps
+* **2,113 quotes** covering 1,413 of the day's 1,440 minutes. A minute without its own quote keeps
   the latest earlier one, and the exact time is then shown in small digits at the top.
 * The quote is typeset in [Literata](https://github.com/googlefonts/literata), Google's e-book
   typeface, at the largest size that fits the screen (16–46 px). The time phrase is bold and coloured.
@@ -33,9 +33,10 @@ to its author, translator or publisher.**
   attribution. Many come from works still under copyright.
 * The collection grew out of a 2011 call by *The Guardian* for readers to find mentions of times of day
   in books. It has since been used by many literary-clock projects.
-* The quotes for 443 minutes that the original list didn't cover (`data/litclock_extra.csv`) come from
+* The quotes for 509 minutes that the original list didn't cover (`data/litclock_extra.csv`) come from
   Johannes Enevoldsen's [literature clock](https://github.com/JohannesNE/literature-clock) list.
-  Only quotes it marks as safe for work are used. That list, and this selection from it, are under
+  Quotes it marks as safe for work are used, plus unrated ones that were read and screened by hand.
+  Quotes it marks as not safe for work are never used. That list, and this selection from it, are under
   [CC BY-NC-SA 2.5](https://creativecommons.org/licenses/by-nc-sa/2.5/), so they can't be used
   commercially (see [`data/LICENSE-litclock_extra.md`](data/LICENSE-litclock_extra.md)).
 * The quotes are reproduced here only to tell the time, in a free, non-commercial project. No
@@ -151,7 +152,8 @@ python tools/preview.py
 ```
 
 * `import_extra.py path/to/litclock_annotated.csv` rebuilds `litclock_extra.csv` from a newer copy of
-  the JohannesNE list (safe-for-work quotes for minutes `litclock.csv` doesn't cover).
+  the JohannesNE list (safe-for-work and screened unrated quotes for minutes `litclock.csv` doesn't
+  cover; unrated quotes from a newer copy should be read before release and added to `EXCLUDE` if unsuitable).
 * `build_quotes.py` warns about any quote whose time phrase it can't find. That quote is shown
   without a highlight.
 * `preview.py` checks that every quote fits the screen and redraws `preview.png`.

@@ -1,8 +1,8 @@
 # Changelog
 
 ## 1.0.1
-- 552 more quotes, from Johannes Enevoldsen's literature clock list (safe-for-work quotes only, CC BY-NC-SA 2.5). They cover 443 minutes that had no quote of their own.
-- 1,996 quotes now cover 1,347 of the day's 1,440 minutes.
+- 669 more quotes, from Johannes Enevoldsen's literature clock list (CC BY-NC-SA 2.5). They cover 509 minutes that had no quote of their own. Safe-for-work quotes are used, plus unrated ones screened by hand; quotes marked not safe for work are never used.
+- 2,113 quotes now cover 1,413 of the day's 1,440 minutes.
 
 ## 1.0.0
 - First release: a quote from a book for the current minute, with the time phrase highlighted and the book and author underneath.
